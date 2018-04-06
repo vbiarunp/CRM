@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import * as actions from './actions';
 const FormItem = Form.Item;
 
 class App extends Component {
+    constructor(props){
+        super();
+        this.fireLogin = this.fireLogin.bind(this);
+    }
+
+    fireLogin(){
+        console.log("hi")
+        axios.get('/api/login');
+    }
     componentWillMount(){
         // debugger;
     }
@@ -22,7 +32,7 @@ class App extends Component {
                 </FormItem>
                 <FormItem>
                     <a className="login-form-forgot" href="">Forgot password</a>
-                    <Button type="primary" htmlType="submit" className="login-form-button">
+                    <Button type="primary" htmlType="submit" className="login-form-button" onClick={this.fireLogin}>
                         Log in
                     </Button>
                     Or <a href="">register now!</a>
