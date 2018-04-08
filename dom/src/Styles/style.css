@@ -12,3 +12,31 @@
 .login-form{
     width: 30%;
 }
+.Dash_layout{
+    width: 100%;
+    height: 100%;
+}
+.Nav_layout{
+    width: 15%;
+    height: 100%;
+    background-color: #3e3e3e;
+    float: left;
+}
+.Main_layout{
+    width: 85%;
+    height: 100%;
+    float: right;
+}
+.Main_layout ul{
+    margin: 10px 0;
+    list-style: none;
+}
+.Main_layout li{
+    display: inline-block;
+}
+.Main_layout li:first-child{
+    width: 50%;
+}
+.Main_layout li:last-child{
+    float: right;
+}
