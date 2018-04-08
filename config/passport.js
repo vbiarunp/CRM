@@ -4,15 +4,29 @@ const mongoose = require('mongoose');
 const Staff = mongoose.model('staff');
 
 module.exports = function (passport) {
-    
-    passport.use(new LocalStrategy(
-        function (username, password, done) {console.log("inside pass")
-            User.findOne({ username: username }, function (err, user) {
-                if (err) { return done(err); }
-                if (!user) { return done(null, false); }
-                if (!user.verifyPassword(password)) { return done(null, false); }
-                return done(null, user);
-            });
-        }
-    ));
+
+    passport.use(new LocalStrategy({
+        usernameField: 'useremail'
+    }, (email, password, done) => {
+        Staff.findOne({
+            useremail: email
+        })
+            .then(res => {
+                if (res.password === password) {
+                    return done(null, res);
+                } else {
+                    return done(null, false);
+                }
+            })
+    }));
+
+    passport.serializeUser(function (user, done) {
+        done(null, user.id);
+    });
+
+    passport.deserializeUser(function (id, done) {
+        Staff.findById(id, function (err, user) {
+            done(err, user);
+        });
+    });
 }

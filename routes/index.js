@@ -3,11 +3,13 @@ const mongoose = require('mongoose');
 const passport =require('passport');
 
 module.exports = (app) => {
-    app.get('/api/login', (req, res, next) => {
-        console.log("start")
+    app.post('/api/login', (req, res, next) => {
         passport.authenticate('local', {
-            successRedirect: '/',
+            successRedirect: '/api/login',
             failureRedirect: '/'
         })(req, res, next);
     });
+    app.get('/api/login', (req, res)=>{
+        console.log(req.user)
+    })
 }

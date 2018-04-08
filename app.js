@@ -1,67 +1,32 @@
 const express = require('express');
-const app = express();
-
-
+const bodyParser = require('body-parser');
+const passport = require('passport');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const { Schema } = mongoose;
 const keys = require('./config/keys');
 
 mongoose.connect(keys.mongoURI);
-const { Schema } = mongoose;
+require('./models/staff');
+const Staff = mongoose.model('staff');
+const app = express();
 
-const staffSchema = new Schema({
-    name: String
-});
 
-const staff = mongoose.model('staff', staffSchema);
 
-const bodyParser = require('body-parser');
+require('./config/passport')(passport);
+
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.get('/', (req, res) => res.sendFile('auth.html', { root: __dirname }));
-const passport = require('passport');
+app.use(session({
+    secret: 'secret123',
+    saveUninitialized: true,
+    resave: true
+  }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/success', (req, res) => res.send("Welcome " + req.query.username + "!!"));
-app.get('/error', (req, res) => res.send("error logging in"));
-
-passport.serializeUser(function (user, cb) {
-    cb(null, user.id);
-});
-
-passport.deserializeUser(function (id, cb) {
-    User.findById(id, function (err, user) {
-        cb(err, user);
-    });
-});
-const port = process.env.PORT || 3000;
+require('./routes/index')(app);
+const port = process.env.PORT || 5000;
 app.listen(port, () => console.log('App listening on port ' + port));
 
-const LocalStrategy = require('passport-local').Strategy;
-
-passport.use(new LocalStrategy(
-    function (username, password, done) {
-        staff.findOne({
-            name: username
-        }, function (err, user) {
-            if (err) {
-                return done(err);
-            }
-
-            if (!user) {
-                return done(null, false);
-            }
-
-            if (user.password != password) {
-                return done(null, false);
-            }
-            return done(null, user);
-        });
-    }
-));
-
-app.post('/',
-    passport.authenticate('local', { failureRedirect: '/error' }),
-    function (req, res) {
-        res.redirect('/success?username=' + req.user.username);
-    });
