@@ -11,14 +11,9 @@ import axios from 'axios';
 export const fetchLogin = (data) => {
     return (dispatch) => {
         axios
-            .get('http://localhost:5000/api/login', data)
+            .post('http://localhost:5000/api/login', data)
             .then(resp => {
-                // dispatch({
-                //     type: 'LOGIN_USER',
-                //     data: resp.data
-                // })
-                // window.location = resp.data.redirect
-                console.log(resp)
+                dispatch({ type: 'FETCH_USER', payload: resp.data });
             })
             .catch(errors => {
                 console.log(errors)

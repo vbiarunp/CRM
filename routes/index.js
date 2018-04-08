@@ -4,12 +4,8 @@ const passport =require('passport');
 
 module.exports = (app) => {
     app.post('/api/login', (req, res, next) => {
-        passport.authenticate('local', {
-            successRedirect: '/api/login',
-            failureRedirect: '/'
+        passport.authenticate('local', function(err, user, info){
+            res.send(user);
         })(req, res, next);
     });
-    app.get('/api/login', (req, res)=>{
-        console.log(req.user)
-    })
 }

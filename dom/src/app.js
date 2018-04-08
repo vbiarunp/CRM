@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { connect } from 'react-redux';
-import { BrowserRouter, Route } from 'react-router-dom';
-import axios from 'axios';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import * as actions from './actions';
 import LoginComponent from './layouts/loginComponent';
 import DashboardComponent from './layouts/dashboardComponent';
@@ -13,12 +11,21 @@ class App extends Component {
     }
 
     render() {
+
         return (
-            <div>
+            <div className="rootLayout">
                 <BrowserRouter>
-                    <div>
-                        <Route exact path='/' component={LoginComponent} />
-                        <Route exact path='/dashboard' component={DashboardComponent} />
+                    <div className="rootLayout">
+                        <Route exact path='/' render={() => (
+                            this.props.staff ? (
+                                <Redirect to="/dashboard" />
+                            ) : (
+                                    <LoginComponent />
+                                ))} />
+                                
+                        <Route component={DashboardComponent} path="/dashboard">
+
+                        </Route>
                     </div>
                 </BrowserRouter>
             </div>
@@ -26,4 +33,8 @@ class App extends Component {
     }
 }
 
-export default connect(null, actions)(App);
+function mapStateToProps(item) {
+    return { staff: item.staff };
+}
+
+export default connect(mapStateToProps, actions)(App);
