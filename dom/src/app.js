@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import * as actions from './actions';
 import LoginComponent from './layouts/loginComponent';
 import DashboardComponent from './layouts/dashboardComponent';
+import StaffComponent from './layouts/staffComponent';
 
 class App extends Component {
     constructor(props) {
@@ -24,7 +25,7 @@ class App extends Component {
                                 ))} />
                                 
                         <Route component={DashboardComponent} path="/dashboard">
-
+                            <Route exact path="/staff" component={StaffComponent} />
                         </Route>
                     </div>
                 </BrowserRouter>
