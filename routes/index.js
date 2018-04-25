@@ -1,6 +1,6 @@
 const LocalStrategy = require('passport-local');
 const mongoose = require('mongoose');
-const passport =require('passport');
+const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const Staff = mongoose.model('staff');
 const Teacher = mongoose.model('teacher');
@@ -17,16 +17,20 @@ module.exports = (app) => {
         });
     });
 
-    app.post('/api/add-teacher', (req, res, next)=> {
-        console.log(req.body)
+    app.post('/api/add-teacher', (req, res, next) => {
         Teacher.create({
             name: req.body.name,
             qualification: req.body.qualification
         }, (error, resp) => {
-        //     console.log(resp)
-            res.json({
-                status: "success"
+            Teacher.find({}).then(resp => {
+                return resp;
+            }).then(resp => {
+                res.json({
+                    status: "success",
+                    listOfStaffs: resp
+                });
             });
+            
         });
     });
 }

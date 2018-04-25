@@ -18,7 +18,8 @@ export const addTeacher = (data) => {
     return (dispatch) => {
         axios.post('http://localhost:5000/api/add-teacher', data)
         .then(res => {
-            dispatch({ type: 'SUCCESS_STATUS', payload: res.data })
+            dispatch({ type: 'SUCCESS_STATUS' });
+            dispatch({ type: 'FETCH_STAFF', payload: res.data.listOfStaffs });
         });
     }
 }

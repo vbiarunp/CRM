@@ -18,7 +18,7 @@ class App extends Component {
                 <BrowserRouter>
                     <div className="rootLayout">
                         <Route exact path='/' render={() => (
-                            this.props.staff ? (
+                            this.props.staff.user ? (
                                 <Redirect to="/dashboard" />
                             ) : (
                                     <LoginComponent />
@@ -35,7 +35,7 @@ class App extends Component {
 }
 
 function mapStateToProps(item) {
-    return { staff: item.staff };
+    return { staff: item.staff.user };
 }
 
 export default connect(mapStateToProps, actions)(App);

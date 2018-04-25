@@ -1,11 +1,19 @@
-import { FETCH_USER, LOGOUT_USER } from '../types';
+import { FETCH_USER, LOGOUT_USER, FETCH_STAFF } from '../types';
 import jwt from 'jsonwebtoken';
 
-export default function (state = null, action) {
+export default function (state = { user: '', listOfStaff: '' }, action) {
     switch (action.type) {
         case FETCH_USER:
-            let users = jwt.decode(action.payload.token);
-            return users;
+            let userDetails = jwt.decode(action.payload.token);
+            return {
+                ...state,
+                user: userDetails
+            };
+        case FETCH_STAFF:
+            return {
+                ...state,
+                listOfStaff: action.payload
+            };
         case LOGOUT_USER:
             return 'logout';
         default:
