@@ -2,38 +2,58 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as actions from '../actions';
-import { Input, Select, Icon, Avatar, Popconfirm, message, Button } from 'antd';
+import { Input, Form, Select, Icon, Avatar, Popconfirm, message, Button, Modal } from 'antd';
 import Navigation from './components/navigation';
 import StaffComponent from './staffComponent';
 
 class DashboardComponent extends Component {
     constructor(props) {
         super();
-        this.logout = this.logout.bind(this);
+        this.state = {
+            visible: false,
+            teacherDetails: {
+                name: '',
+                qualification: ''
+            }
+        };
+        // this.logout = this.logout.bind(this);
+        this.showForm = this.showForm.bind(this);
+        this.addTeacher = this.addTeacher.bind(this);
+        this.onValueChange = this.onValueChange.bind(this);
     }
 
-    logout() {
-        this.props.logoutUser();
+    showForm(){
+        this.setState({
+            visible: !this.state.visible
+        });
     }
+
+    addTeacher(){
+        this.props.addTeacher(this.props.teacherDetails);
+    }
+
+    onValueChange(event){
+        const { teacherDetails } = this.state;
+        teacherDetails[event.target.id] = event.target.value;
+        this.setState({
+            teacherDetails
+        });
+    }
+    // logout() {
+    //     this.props.logoutUser();
+    // }
 
     render() {
-        return (
-            <div className="Dash_layout">
-                <div className="Nav_layout">
-                    <ul>
-                        <li>Dashboard</li>
-                        <li>
-                            <Link to="/staff">Staffs</Link>
-                        </li>
-                        <li>Classes</li>
-                        <li>Students</li>
-                    </ul>
-                </div>
+        const { teacherDetails } = this.state;
 
-                <div className="Main_layout">
-                    <Navigation />
-                    {this.props.children}
-                </div>
+        return (
+            <div>
+                <button onClick={this.showForm}>Add Teacher</button>
+                <Modal title="Add Teacher" visible={this.state.visible} onOk={this.handleOk} onCancel={this.showForm} >
+                        <Input type='text' id="name" value={teacherDetails.name} onChange={this.onValueChange} />
+                        <Input type='text' id="qualification" value={teacherDetails.qualification} onChange={this.onValueChange} />
+                        <button onClick={this.addTeacher}>Register</button>
+                </Modal>
             </div>
         )
     }

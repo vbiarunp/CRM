@@ -7,10 +7,9 @@ const jwt = require('jsonwebtoken');
 var cors = require('cors');
 const { Schema } = mongoose;
 const keys = require('./config/keys');
-
-mongoose.connect(keys.mongoURI);
 require('./models/staff');
-const Staff = mongoose.model('staff');
+require('./models/teacher');
+mongoose.connect(keys.mongoURI);
 const app = express();
 
 //enables cors

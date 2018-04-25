@@ -14,6 +14,15 @@ export const fetchLogin = (data) => {
     }
 }
 
+export const addTeacher = (data) => {
+    return (dispatch) => {
+        axios.post('http://localhost:5000/api/add-teacher', data)
+        .then(res => {
+            debugger
+        });
+    }
+}
+
 export const logoutUser = () => {
     return (dispatch) => {
         dispatch({ type: 'LOGOUT_USER' });
