@@ -16,7 +16,14 @@ class App extends Component {
         return (
             <div className="rootLayout">
                 <BrowserRouter>
-                    <div className="rootLayout">                                
+                    <div className="rootLayout">
+                        <Route exact path='/' render={() => (
+                            this.props.staff ? (
+                                <Redirect to="/dashboard" />
+                            ) : (
+                                    <LoginComponent />
+                                ))} />
+
                         <Route component={DashboardComponent} path="/dashboard">
                             <Route exact path="/staff" component={StaffComponent} />
                         </Route>

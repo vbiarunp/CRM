@@ -18,6 +18,7 @@ module.exports = (app) => {
     });
 
     app.post('/api/add-teacher', (req, res, next)=> {
+        console.log(req.body)
         Teacher.create({
             name: req.body.name,
             qualification: req.body.qualification

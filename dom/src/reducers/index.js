@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import staffReducer from './staffReducer';
+import statusReducer from './statusReducer';
 
 export default combineReducers({
-    staff: staffReducer
+    staff: staffReducer,
+    statusMessage: statusReducer
 });

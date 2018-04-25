@@ -29,7 +29,15 @@ class DashboardComponent extends Component {
     }
 
     addTeacher(){
-        this.props.addTeacher(this.props.teacherDetails);
+        this.props.addTeacher(this.state.teacherDetails);
+    }
+
+    componentWillReceiveProps(prevProps, nextProps){
+        if(prevProps.statusMessage.type === 'success'){
+            this.setState({
+                visible: false
+            });
+        }
     }
 
     onValueChange(event){
@@ -59,4 +67,8 @@ class DashboardComponent extends Component {
     }
 }
 
-export default connect(null, actions)(DashboardComponent);
+function mapStateToProps(item){
+    return { statusMessage : item.statusMessage };
+}
+
+export default connect(mapStateToProps, actions)(DashboardComponent);

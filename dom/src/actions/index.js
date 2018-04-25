@@ -18,7 +18,7 @@ export const addTeacher = (data) => {
     return (dispatch) => {
         axios.post('http://localhost:5000/api/add-teacher', data)
         .then(res => {
-            debugger
+            dispatch({ type: 'SUCCESS_STATUS', payload: res.data })
         });
     }
 }
