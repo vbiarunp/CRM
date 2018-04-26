@@ -30,7 +30,17 @@ module.exports = (app) => {
                     listOfStaffs: resp
                 });
             });
-            
+
+        });
+    });
+
+    app.get('/api/get-teacher', (req, res) => {
+        Teacher.find({}).then(resp => {
+            return resp;
+        }).then(resp => {
+            res.json({
+                listOfStaffs: resp
+            });
         });
     });
 }

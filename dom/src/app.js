@@ -12,7 +12,6 @@ class App extends Component {
     }
 
     render() {
-
         return (
             <div className="rootLayout">
                 <BrowserRouter>
@@ -35,7 +34,7 @@ class App extends Component {
 }
 
 function mapStateToProps(item) {
-    return { staff: item.staff.user };
+    return { staff: item.staff };
 }
 
 export default connect(mapStateToProps, actions)(App);

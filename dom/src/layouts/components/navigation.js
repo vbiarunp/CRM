@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Icon, Input, Button, Avatar, Popconfirm, Select } from 'antd';
+import { Input, Button, Avatar, Popconfirm, Select } from 'antd';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 const Option = Select.Option;

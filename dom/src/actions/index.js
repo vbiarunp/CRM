@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+/**
+ * @param {*data} returns user email and password to the node server for authentication 
+ * On response, the dispatch action to store user data is called.
+ */
 export const fetchLogin = (data) => {
     return (dispatch) => {
         axios
@@ -14,13 +18,26 @@ export const fetchLogin = (data) => {
     }
 }
 
+/**
+ * @param {*data} returns teacher details to the node server for inserting in db 
+ * On response, the dispatch action to send the success msg and to fetch the list of teachers.
+ */
 export const addTeacher = (data) => {
     return (dispatch) => {
         axios.post('http://localhost:5000/api/add-teacher', data)
-        .then(res => {
-            dispatch({ type: 'SUCCESS_STATUS' });
-            dispatch({ type: 'FETCH_STAFF', payload: res.data.listOfStaffs });
-        });
+            .then(res => {
+                dispatch({ type: 'SUCCESS_STATUS' });
+                dispatch({ type: 'FETCH_STAFF', payload: res.data.listOfStaffs });
+            });
+    }
+}
+
+export const getTeacher = () => {
+    return (dispatch) => {
+        axios.get('http://localhost:5000/api/get-teacher')
+            .then(res => {
+                dispatch({ type: 'FETCH_STAFF', payload: res.data.listOfStaffs });
+            });
     }
 }
 
