@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosastic = require('mongoosastic');
 const { Schema } = mongoose;
 
 const staffSchema = new Schema({
@@ -15,5 +16,5 @@ const staffSchema = new Schema({
         required: true
     }
 });
-
+staffSchema.plugin(mongoosastic);
 mongoose.model('staff', staffSchema);

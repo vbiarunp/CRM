@@ -41,6 +41,15 @@ export const getTeacher = () => {
     }
 }
 
+export const searchTeacher = (teacher) => {
+    return (dispatch) => {
+        axios.post('http://localhost:5000/api/search-teacher', teacher)
+            .then(res => {
+                console.log(res)
+            })
+    }
+}
+
 export const logoutUser = () => {
     return (dispatch) => {
         dispatch({ type: 'LOGOUT_USER' });

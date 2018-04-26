@@ -3,14 +3,23 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { Input, Select, Icon, Avatar, Popconfirm, message, Modal, notification, Card, Col, Row } from 'antd';
 const { Meta } = Card;
+const Search = Input.Search;
 
 class StaffListComponent extends Component {
-    
-    constructor(props){
+
+    constructor(props) {
         super();
+        this.state = {};
+        this.onSearch = this.onSearch.bind(this);
     }
 
-    componentWillMount(){
+    onSearch(event){
+        this.props.searchTeacher({
+            search: event.target.value
+        });
+    }
+
+    componentWillMount() {
         this.props.getTeacher();
     }
 
@@ -36,7 +45,12 @@ class StaffListComponent extends Component {
 
         return (
             <Row gutter={8}>
+                <div>
+                    <Search placeholder="input search text" onChange={this.onSearch} style={{ width: 500 }} />
+                </div>
+
                 {staffDOM}
+                
             </Row>
         )
     }
