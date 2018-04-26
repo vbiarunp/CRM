@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { Link } from 'react-router-dom';
 import * as actions from '../actions';
 import { Input, Select, Icon, Avatar, Popconfirm, message, Modal, notification, Card, Col, Row } from 'antd';
-// import Navigation from './components/navigation';
-// import StaffComponent from './staffComponent';
+import StaffListComponent from './components/staffListComponent';
 const { Meta } = Card;
 
 class DashboardComponent extends Component {
@@ -20,10 +18,6 @@ class DashboardComponent extends Component {
         this.showForm = this.showForm.bind(this);
         this.addTeacher = this.addTeacher.bind(this);
         this.onValueChange = this.onValueChange.bind(this);
-    }
-
-    componentWillMount(){
-        this.props.getTeacher();
     }
 
     showForm() {
@@ -61,25 +55,6 @@ class DashboardComponent extends Component {
     render() {
         const { teacherDetails } = this.state;
 
-        let staffDOM = '';
-
-        if (this.props.staff.listOfStaff) {
-            staffDOM = this.props.staff.listOfStaff.map((element) => {
-                return <Col span={8} key={element._id}>
-                    <Card
-                        style={{ width: 300 }}
-                        actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}
-                    >
-                        <Meta
-                            avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                            title={element.name}
-                            description={element.qualification}
-                        />
-                    </Card>
-                </Col>
-            });
-        }
-
         return (
             <div>
                 <button onClick={this.showForm}>Add Teacher</button>
@@ -88,10 +63,7 @@ class DashboardComponent extends Component {
                     <Input type='text' id="qualification" value={teacherDetails.qualification} onChange={this.onValueChange} />
                     <button onClick={this.addTeacher}>Register</button>
                 </Modal>
-                <Row gutter={16}>
-                    {staffDOM}
-                </Row>
-
+                <StaffListComponent />
             </div>
         )
     }
