@@ -90,8 +90,11 @@ class StaffListComponent extends Component {
         }
 
         return (
-            <div>
-                <button onClick={this.showForm}>Add Staff</button>
+            <div style={{ width: 1000, float: 'right' }}>
+                <div style={{ margin: '8px 0', width: '100%' }}>
+                    <button onClick={this.showForm}>Add Staff</button>
+                    <Search placeholder="input search text" onChange={this.onSearch} style={{ width: 500 }} />
+                </div>
                 <Modal title="Add Teacher" visible={this.state.visible} onOk={this.handleOk} onCancel={this.showForm}
                     footer={[]}>
                     <Item>
@@ -105,10 +108,8 @@ class StaffListComponent extends Component {
                     </Item>
                     <button onClick={this.addTeacher}>Add Staff</button>
                 </Modal>
+
                 <Row gutter={8}>
-                    <div>
-                        <Search placeholder="input search text" onChange={this.onSearch} style={{ width: 500 }} />
-                    </div>
 
                     {staffDOM}
 

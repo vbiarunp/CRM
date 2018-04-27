@@ -20,6 +20,8 @@ class SidebarComponent extends Component {
             <div style={{ width: 256, height: '300px', float: 'left' }}>
                 <ul>
                     <li>Staffs</li>
+                    <li>Events</li>
+                    <li>Classes</li>
                 </ul>
             </div>
         );
