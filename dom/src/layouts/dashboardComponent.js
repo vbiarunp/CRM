@@ -19,7 +19,9 @@ class DashboardComponent extends Component {
                 </div>
                 <div>
                     <SidebarComponent />
+                    <div style = {{ width: 1000, float: 'left' }}>
                     {this.props.children}
+                    </div>
                 </div>
             </div>
         )

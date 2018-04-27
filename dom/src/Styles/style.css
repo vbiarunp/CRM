@@ -40,3 +40,10 @@
 .Main_layout li:last-child{
     float: right;
 }
+.staff-name{
+    font-size: 30px;
+    display: block;
+}
+.staff-qualification{
+    font-size: 18px;
+}
