@@ -54,6 +54,11 @@ module.exports = (app) => {
         });
     });
 
+    app.post('/api/get-teacher-details', (req, res) => {
+        Teacher.findById(req.body.id)
+            .then(teacher => res.json(teacher));
+    });
+
     // app.post('/api/search-teacher', (req, res) => {
     //     // console.log(req.body)
     //     Teacher.search(null, {

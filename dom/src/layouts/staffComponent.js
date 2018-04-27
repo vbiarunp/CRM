@@ -7,16 +7,27 @@ import * as actions from '../actions';
 
 class StaffComponent extends Component {
     constructor(props) {
-        super();
+        super(props);
+    }
+
+    componentWillMount(){
+        this.props.getTeacherDetails({id: this.props.match.params.id });
     }
 
     render() {
+        const { selectedTeacher } = this.props;
+        
         return (
-            <div className="Dash_layout">
-                Staff
+            <div>
+                Name: {selectedTeacher.name}
+                Qualification: {selectedTeacher.qualification}
             </div>
         )
     }
 }
 
-export default connect(null, actions)(StaffComponent);
+function mapStateToProps(item) {
+    return { ...item };
+}
+
+export default connect(mapStateToProps, actions)(StaffComponent);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import * as actions from '../../actions';
 import { Input, Select, Icon, Avatar, Popconfirm, message, Modal, notification, Card, Col, Row } from 'antd';
 const { Meta } = Card;
@@ -31,7 +32,7 @@ class StaffListComponent extends Component {
                 return <Col span={5} key={element._id}>
                     <Card
                         style={{ width: '100%' }}
-                        actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}
+                        actions={[<Icon type="setting" />, <Link to={{ pathname: "/staff/"+element._id, state: { foo: 'bar'} }}><Icon type="edit" /></Link>, <Icon type="ellipsis" />]}
                     >
                         <Meta
                             avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
