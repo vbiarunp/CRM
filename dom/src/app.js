@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import * as actions from './actions';
 import LoginComponent from './layouts/loginComponent';
 import DashboardComponent from './layouts/dashboardComponent';
@@ -8,7 +8,10 @@ import StaffComponent from './layouts/staffComponent';
 
 class App extends Component {
     constructor(props) {
-        super();
+        super(props);
+        if(localStorage.getItem('Authorization')){
+            this.props.storeUser(localStorage.getItem('Authorization'));
+        }
     }
 
     render() {
@@ -16,16 +19,15 @@ class App extends Component {
             <div className="rootLayout">
                 <BrowserRouter>
                     <div className="rootLayout">
-                        <Route exact path='/' render={() => (
-                            this.props.staff.user ? (
-                                <Redirect to="/dashboard" />
-                            ) : (
-                                    <LoginComponent />
-                                ))} />
+                        <Switch>
+                            <Route exact path='/' render={() => (
+                                this.props.staff.user ? (<Redirect to="/dashboard" />) : (<LoginComponent />)
+                            )} />
 
-                        <Route component={DashboardComponent} path="/dashboard">
-                            <Route exact path="/staff" component={StaffComponent} />
-                        </Route>
+                            <Route component={DashboardComponent} path="/dashboard">
+                                <Route exact path="/staff" component={StaffComponent} />
+                            </Route>
+                        </Switch>
                     </div>
                 </BrowserRouter>
             </div>

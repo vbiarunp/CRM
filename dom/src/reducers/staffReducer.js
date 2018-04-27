@@ -15,7 +15,10 @@ export default function (state = { user: '', listOfStaff: '' }, action) {
                 listOfStaff: action.payload
             };
         case LOGOUT_USER:
-            return 'logout';
+            return {
+                listOfStaff: '',
+                user: ''
+            };
         default:
             return state;
     }

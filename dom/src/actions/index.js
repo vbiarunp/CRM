@@ -10,11 +10,18 @@ export const fetchLogin = (data) => {
             .post('http://localhost:5000/api/login', data)
             .then(resp => {
                 axios.defaults.headers.common['Authorization'] = resp.data.token;
+                localStorage.setItem('Authorization', resp.data.token);
                 dispatch({ type: 'FETCH_USER', payload: resp.data });
             })
             .catch(errors => {
                 console.log(errors)
             })
+    }
+}
+
+export const storeUser = (data) => {
+    return (dispatch) => {
+        dispatch({type:'FETCH_USER', payload: {token: data} });
     }
 }
 
@@ -52,6 +59,8 @@ export const searchTeacher = (teacher) => {
 
 export const logoutUser = () => {
     return (dispatch) => {
+        axios.defaults.headers.common['Authorization'] = '';
+        localStorage.setItem('Authorization', '');
         dispatch({ type: 'LOGOUT_USER' });
     }
 }

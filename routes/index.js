@@ -5,15 +5,15 @@ const jwt = require('jsonwebtoken');
 const Staff = mongoose.model('staff');
 const Teacher = mongoose.model('teacher');
 
-Teacher.createMapping(function (err, mapping) {
-    if (err) {
-        console.log('error creating mapping (you can safely ignore this)');
-        console.log(err);
-    } else {
-        console.log('mapping created!');
-        console.log(mapping);
-    }
-});
+// Teacher.createMapping(function (err, mapping) {
+//     if (err) {
+//         console.log('error creating mapping (you can safely ignore this)');
+//         console.log(err);
+//     } else {
+//         console.log('mapping created!');
+//         console.log(mapping);
+//     }
+// });
 
 module.exports = (app) => {
     app.post('/api/login', (req, res, next) => {
@@ -54,20 +54,20 @@ module.exports = (app) => {
         });
     });
 
-    app.post('/api/search-teacher', (req, res) => {
-        // console.log(req.body)
-        Teacher.search(null, {
-            suggest: {
-                "Teacher-suggest": {
-                    "text": "aTermToAutocomplete",
-                    "completion": {
-                        "field": "name"
-                    }
-                }
-            },
-            "size": 0
-        }, function (err, results) {
-            console.log(results, err);
-        });
-    });
+    // app.post('/api/search-teacher', (req, res) => {
+    //     // console.log(req.body)
+    //     Teacher.search(null, {
+    //         suggest: {
+    //             "Teacher-suggest": {
+    //                 "text": "aTermToAutocomplete",
+    //                 "completion": {
+    //                     "field": "name"
+    //                 }
+    //             }
+    //         },
+    //         "size": 0
+    //     }, function (err, results) {
+    //         console.log(results, err);
+    //     });
+    // });
 }

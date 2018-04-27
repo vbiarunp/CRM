@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { Input, Select, Icon, Avatar, Popconfirm, message, Modal, notification, Card, Col, Row } from 'antd';
 import StaffListComponent from './components/staffListComponent';
+import Navigation from './components/navigation';
 const { Meta } = Card;
 
 class DashboardComponent extends Component {
@@ -57,6 +58,7 @@ class DashboardComponent extends Component {
 
         return (
             <div>
+                <Navigation />
                 <button onClick={this.showForm}>Add Teacher</button>
                 <Modal title="Add Teacher" visible={this.state.visible} onOk={this.handleOk} onCancel={this.showForm} >
                     <Input type='text' id="name" value={teacherDetails.name} onChange={this.onValueChange} />
