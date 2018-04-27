@@ -5,11 +5,12 @@ import * as actions from './actions';
 import LoginComponent from './layouts/loginComponent';
 import DashboardComponent from './layouts/dashboardComponent';
 import StaffComponent from './layouts/staffComponent';
+import StaffListComponent from './layouts/components/staffListComponent';
 
 class App extends Component {
     constructor(props) {
         super(props);
-        if(localStorage.getItem('Authorization')){
+        if (localStorage.getItem('Authorization')) {
             this.props.storeUser(localStorage.getItem('Authorization'));
         }
     }
@@ -23,9 +24,10 @@ class App extends Component {
                             <Route exact path='/' render={() => (
                                 this.props.staff.user ? (<Redirect to="/dashboard" />) : (<LoginComponent />)
                             )} />
-
-                            <Route exact component={DashboardComponent} path="/dashboard" />
-                            <Route exact path="/staff/:id" component={StaffComponent} />
+                            <DashboardComponent>
+                                <Route path="/dashboard" component={StaffListComponent} />
+                                <Route path="/staff/:id" component={StaffComponent} />
+                            </DashboardComponent>
                         </Switch>
                     </div>
                 </BrowserRouter>

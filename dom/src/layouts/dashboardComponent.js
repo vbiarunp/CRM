@@ -74,7 +74,7 @@ class DashboardComponent extends Component {
                     </Item>
                     <button onClick={this.addTeacher}>Add Staff</button>
                 </Modal>
-                <StaffListComponent />
+                {this.props.children}
             </div>
         )
     }
