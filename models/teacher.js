@@ -5,21 +5,16 @@ const { Schema } = mongoose;
 const teacherSchema = new Schema({
     name: {
         type: String,
-        required: true,
-        es_type: 'completion',
-        es_index_analyzer: 'simple',
-        es_search_analyzer: 'simple',
-        es_payloads: true
+        required: true
     },
     qualification: {
+        type: String,
+        required: true
+    },
+    email: {
         type: String,
         required: true
     }
 });
 
-teacherSchema.plugin(mongoosastic, {
-    hosts: [
-        'localhost:5000'
-    ]
-});
 mongoose.model('teacher', teacherSchema);

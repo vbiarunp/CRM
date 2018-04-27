@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import { Input, Select, Icon, Avatar, Popconfirm, message, Modal, notification, Card, Col, Row } from 'antd';
+import { Input, Select, Icon, Avatar, Popconfirm, message, Modal, notification, Card, Col, Row, Form } from 'antd';
 import StaffListComponent from './components/staffListComponent';
 import Navigation from './components/navigation';
 const { Meta } = Card;
+const { Item } = Form;
 
 class DashboardComponent extends Component {
     constructor(props) {
@@ -59,11 +60,19 @@ class DashboardComponent extends Component {
         return (
             <div>
                 <Navigation />
-                <button onClick={this.showForm}>Add Teacher</button>
-                <Modal title="Add Teacher" visible={this.state.visible} onOk={this.handleOk} onCancel={this.showForm} >
-                    <Input type='text' id="name" value={teacherDetails.name} onChange={this.onValueChange} />
-                    <Input type='text' id="qualification" value={teacherDetails.qualification} onChange={this.onValueChange} />
-                    <button onClick={this.addTeacher}>Register</button>
+                <button onClick={this.showForm}>Add Staff</button>
+                <Modal title="Add Teacher" visible={this.state.visible} onOk={this.handleOk} onCancel={this.showForm}
+                    footer={[]}>
+                    <Item>
+                        <Input type='text' id="name" value={teacherDetails.name} onChange={this.onValueChange} placeholder="Enter the staff name" />
+                    </Item>
+                    <Item>
+                        <Input type='text' id="qualification" value={teacherDetails.qualification} onChange={this.onValueChange} placeholder="Enter the staff qualification" />
+                    </Item>
+                    <Item>
+                        <Input type='text' id="email" value={teacherDetails.email} onChange={this.onValueChange} placeholder="Enter the staff email" />
+                    </Item>
+                    <button onClick={this.addTeacher}>Add Staff</button>
                 </Modal>
                 <StaffListComponent />
             </div>

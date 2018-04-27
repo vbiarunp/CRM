@@ -30,7 +30,8 @@ module.exports = (app) => {
     app.post('/api/add-teacher', (req, res, next) => {
         Teacher.create({
             name: req.body.name,
-            qualification: req.body.qualification
+            qualification: req.body.qualification,
+            email: req.body.email
         }, (error, resp) => {
             Teacher.find({}).then(resp => {
                 return resp;
