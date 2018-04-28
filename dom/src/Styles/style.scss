@@ -69,7 +69,7 @@ $side-bar-li-selected: #0073aa;
 $side-bar-text: #000;
 $side-bar-li-hover: #f8f9fa;
 .side-bar{
-    width: 256px;
+    width: 15%;
     height: 100%;
     float: left;
     background-color: $side-bar-bg;
@@ -87,4 +87,12 @@ $side-bar-li-hover: #f8f9fa;
             }
         }
     }
+}
+
+$dashboard-bg-color: #fff;
+.dashboard-area-element{
+    width: 80%;
+    margin: 0 2.5%;
+    float: left;
+    background-color: $dashboard-bg-color;
 }

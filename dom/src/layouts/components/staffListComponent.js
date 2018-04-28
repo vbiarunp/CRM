@@ -90,7 +90,7 @@ class StaffListComponent extends Component {
         }
 
         return (
-            <div style={{ width: 1000, float: 'right' }}>
+            <div>
                 <div style={{ margin: '8px 0', width: '100%' }}>
                     <button onClick={this.showForm}>Add Staff</button>
                     <Search placeholder="input search text" onChange={this.onSearch} style={{ width: 500 }} />

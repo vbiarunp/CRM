@@ -10,12 +10,22 @@ import { Container, Row, Col } from 'reactstrap';
 class StaffComponent extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            isEdit: false
+        }
         this.removeRecord = this.removeRecord.bind(this);
+        this.enableEdit = this.enableEdit.bind(this);
     }
 
-    removeRecord(id){
+    removeRecord(id) {
         this.props.removeStaff({ 'id': this.props.staff.selectedTeacher._id });
         this.props.history.push('/dashboard');
+    }
+
+    enableEdit() {
+        this.setState({
+            isEdit: !this.state.isEdit
+        });
     }
 
     componentWillMount() {
@@ -36,42 +46,52 @@ class StaffComponent extends Component {
                         <span className="staff-name">
                             <Row>
                                 <Col xs="3" sm="3">Name: </Col>
-                                <Col xs="9" sm="9">{selectedTeacher.name}</Col>
+                                <Col xs="9" sm="9">
+                                    {this.state.isEdit ? <input type="text" value={selectedTeacher.name} /> : (<text>{selectedTeacher.name}</text>)}
+                                </Col>
                             </Row>
                         </span>
                         <span className="staff-qualification">
                             <Row>
                                 <Col xs="3" sm="3">Qualification: </Col>
-                                <Col xs="9" sm="9">{selectedTeacher.qualification}</Col>
+                                <Col xs="9" sm="9">
+                                    {this.state.isEdit ? <input type="text" value={selectedTeacher.name} /> : (<text>{selectedTeacher.qualification}</text>)}
+                                </Col>
                             </Row>
                         </span>
                         <span className="staff-qualification">
                             <Row>
                                 <Col xs="3" sm="3">Joining Date: </Col>
-                                <Col xs="9" sm="9">{selectedTeacher.qualification}</Col>
+                                <Col xs="9" sm="9">
+                                    {this.state.isEdit ? <input type="text" value={selectedTeacher.name} /> : (<text>{selectedTeacher.qualification}</text>)}
+                                </Col>
                             </Row>
                         </span>
                         <span className="staff-qualification">
                             <Row>
                                 <Col xs="3" sm="3">Total Experience: </Col>
-                                <Col xs="9" sm="9">{selectedTeacher.qualification}</Col>
+                                <Col xs="9" sm="9">
+                                    {this.state.isEdit ? <input type="text" value={selectedTeacher.qualification} /> : (<text>{selectedTeacher.qualification}</text>)}
+                                </Col>
                             </Row>
                         </span>
                         <span className="staff-qualification">
                             <Row>
                                 <Col xs="3" sm="3">Address: </Col>
-                                <Col xs="9" sm="9">{selectedTeacher.qualification}</Col>
+                                <Col xs="9" sm="9">
+                                    {this.state.isEdit ? <input type="text" value={selectedTeacher.qualification} /> : (<text>{selectedTeacher.qualification}</text>)}
+                                </Col>
                             </Row>
                         </span>
                         <span className="staff-qualification">
                             <Row>
-                                <Col xs="3" sm="3"><button>Edit</button></Col>
+                                <Col xs="3" sm="3"><button onClick={this.enableEdit}>{ this.state.isEdit ? 'Update' : 'Edit'}</button></Col>
                                 <Col xs="9" sm="9"><button onClick={this.removeRecord}>Remove Record</button></Col>
                             </Row>
                         </span>
                     </Col>
                 </Row>
-            </Container>
+            </Container >
         }
 
         return (
