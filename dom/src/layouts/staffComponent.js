@@ -15,6 +15,7 @@ class StaffComponent extends Component {
 
     removeRecord(id){
         this.props.removeStaff({ 'id': this.props.staff.selectedTeacher._id });
+        this.props.history.push('/dashboard');
     }
 
     componentWillMount() {

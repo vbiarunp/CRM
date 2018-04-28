@@ -17,7 +17,7 @@ class SidebarComponent extends Component {
 
     render() {
         return (
-            <div style={{ width: 256, height: '300px', float: 'left' }}>
+            <div className="side-bar">
                 <ul>
                     <li>Staffs</li>
                     <li>Events</li>

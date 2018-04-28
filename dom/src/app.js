@@ -24,9 +24,10 @@ class App extends Component {
                             <Route exact path='/' render={() => (
                                 this.props.staff.user ? (<Redirect to="/dashboard" />) : (<LoginComponent />)
                             )} />
+                            <Route exact path="/login" component={LoginComponent} />
                             <DashboardComponent>
-                                <Route path="/dashboard" component={StaffListComponent} />
-                                <Route path="/staff/:id" component={StaffComponent} />
+                                <Route exact path="/dashboard" component={StaffListComponent} />
+                                <Route exact path="/staff/:id" component={StaffComponent} />
                             </DashboardComponent>
                         </Switch>
                     </div>

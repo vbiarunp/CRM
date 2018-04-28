@@ -1,6 +1,22 @@
+$root-bg: #eef1f6;
 #root, .rootLayout{
     width: 100%;
     height: 100%;
+    background-color: $root-bg;
+}
+.nav-bar-element{
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
+}
+.content-element{
+    width: 100%;
+    margin-top: 60px;
+    top: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 .formLayout{
     width: 100%;
@@ -44,10 +60,31 @@
     display: block;
     margin: 15px 0;
 }
-/* .staff-name{
-    font-size: 30px;
-    display: block;
+
+/**
+*  CSS for the Side Bar Components
+*/
+$side-bar-bg: #fff;
+$side-bar-li-selected: #0073aa;
+$side-bar-text: #000;
+$side-bar-li-hover: #f8f9fa;
+.side-bar{
+    width: 256px;
+    height: 100%;
+    float: left;
+    background-color: $side-bar-bg;
+    
+    ul{
+        list-style: none;
+        padding: 0;
+        li{
+            color: $side-bar-text;
+            margin: 10px 0;
+            padding: 10px 30px;
+            &:hover{
+                background-color: $side-bar-li-hover;
+                cursor: pointer;
+            }
+        }
+    }
 }
-.staff-qualification{
-    font-size: 18px;
-} */

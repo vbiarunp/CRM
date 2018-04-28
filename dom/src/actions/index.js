@@ -60,8 +60,10 @@ export const getTeacherDetails = (data) => {
 export const removeStaff = (data) => {
     return (dispatch) => {
         axios.post('http://localhost:5000/api/remove-staff', data)
+        axios.post('http://localhost:5000/api/add-teacher', data)
             .then(res => {
-                // dispatch({ type: 'GET_SELECTED_TEACHER', payload: res.data });
+                dispatch({ type: 'REMOVE_STAFF' });
+                dispatch({ type: 'FETCH_STAFF', payload: res.data.listOfStaffs });
             });
     }
 }

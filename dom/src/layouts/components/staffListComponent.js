@@ -43,7 +43,7 @@ class StaffListComponent extends Component {
     }
 
     componentWillReceiveProps(prevProps, nextProps) {
-        if (prevProps.statusMessage && prevProps.statusMessage.type === 'success') {
+        if (prevProps.statusMessage && prevProps.statusMessage.type === 'success' && this.state.visible) {
             this.setState({
                 visible: false
             });
@@ -71,7 +71,7 @@ class StaffListComponent extends Component {
     render() {
         let staffDOM = '';
         const { teacherDetails } = this.state;
-
+        
         if (this.props.staff.listOfStaff) {
             staffDOM = this.props.staff.listOfStaff.map((element) => {
                 return <Col span={6} key={element._id}>
