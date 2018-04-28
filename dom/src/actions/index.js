@@ -57,6 +57,15 @@ export const getTeacherDetails = (data) => {
     }
 }
 
+export const removeStaff = (data) => {
+    return (dispatch) => {
+        axios.post('http://localhost:5000/api/remove-staff', data)
+            .then(res => {
+                // dispatch({ type: 'GET_SELECTED_TEACHER', payload: res.data });
+            });
+    }
+}
+
 export const searchTeacher = (teacher) => {
     return (dispatch) => {
         axios.post('http://localhost:5000/api/search-teacher', teacher)

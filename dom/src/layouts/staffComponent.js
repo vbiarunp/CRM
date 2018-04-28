@@ -10,6 +10,11 @@ import { Container, Row, Col } from 'reactstrap';
 class StaffComponent extends Component {
     constructor(props) {
         super(props);
+        this.removeRecord = this.removeRecord.bind(this);
+    }
+
+    removeRecord(id){
+        this.props.removeStaff({ 'id': this.props.staff.selectedTeacher._id });
     }
 
     componentWillMount() {
@@ -26,12 +31,43 @@ class StaffComponent extends Component {
                     <Col xs="3" sm="3">
                         <img style={{ width: '100%' }} src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
                     </Col>
-                    <Col>
-                        <span className="staff-name">{selectedTeacher.name}</span>
-                        <span className="staff-qualification">{selectedTeacher.qualification}</span>
-                        <span className="staff-qualification">Joining Date: {selectedTeacher.qualification}</span>
-                        <span className="staff-qualification">Total Experience: {selectedTeacher.qualification}</span>
-                        <span className="staff-qualification">Address: {selectedTeacher.qualification}</span>
+                    <Col className="detail-list">
+                        <span className="staff-name">
+                            <Row>
+                                <Col xs="3" sm="3">Name: </Col>
+                                <Col xs="9" sm="9">{selectedTeacher.name}</Col>
+                            </Row>
+                        </span>
+                        <span className="staff-qualification">
+                            <Row>
+                                <Col xs="3" sm="3">Qualification: </Col>
+                                <Col xs="9" sm="9">{selectedTeacher.qualification}</Col>
+                            </Row>
+                        </span>
+                        <span className="staff-qualification">
+                            <Row>
+                                <Col xs="3" sm="3">Joining Date: </Col>
+                                <Col xs="9" sm="9">{selectedTeacher.qualification}</Col>
+                            </Row>
+                        </span>
+                        <span className="staff-qualification">
+                            <Row>
+                                <Col xs="3" sm="3">Total Experience: </Col>
+                                <Col xs="9" sm="9">{selectedTeacher.qualification}</Col>
+                            </Row>
+                        </span>
+                        <span className="staff-qualification">
+                            <Row>
+                                <Col xs="3" sm="3">Address: </Col>
+                                <Col xs="9" sm="9">{selectedTeacher.qualification}</Col>
+                            </Row>
+                        </span>
+                        <span className="staff-qualification">
+                            <Row>
+                                <Col xs="3" sm="3"><button>Edit</button></Col>
+                                <Col xs="9" sm="9"><button onClick={this.removeRecord}>Remove Record</button></Col>
+                            </Row>
+                        </span>
                     </Col>
                 </Row>
             </Container>

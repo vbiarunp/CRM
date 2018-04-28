@@ -12,7 +12,6 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.1.0",
     "jsonwebtoken": "^8.2.1",
-    "nodemon": "^1.17.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
@@ -24,8 +23,14 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "styles": "node-sass --include-path scss src/Styles/style.scss src/Styles/style.css",
+    "watch-css": "nodemon -e scss -x \"npm run styles\" ",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "node-sass": "^4.9.0",
+    "nodemon": "^1.17.3"
   }
 }

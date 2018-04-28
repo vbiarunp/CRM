@@ -7,7 +7,8 @@
     "dev": "nodemon app.js",
     "server": "npm run dev",
     "client": "npm run start --prefix dom",
-    "start": "concurrently \"npm run server\" \"npm run client\""
+    "Styles": "npm run watch-css --prefix dom",
+    "start": "concurrently \"npm run server\" \"npm run client\" \"npm run Styles\""
   },
   "author": "",
   "license": "ISC",
