@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as actions from '../actions';
-import { Breadcrumb, Icon, List } from 'antd';
-import { Container, Row, Col } from 'reactstrap';
-// import { Input, Select, Icon, Avatar, Popconfirm, message, Button } from 'antd';
-// import Navigation from './components/navigation';
+import { Container, Row, Col, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
 class StaffComponent extends Component {
     constructor(props) {
@@ -15,6 +12,7 @@ class StaffComponent extends Component {
         }
         this.removeRecord = this.removeRecord.bind(this);
         this.enableEdit = this.enableEdit.bind(this);
+        this.updateDetails = this.updateDetails.bind(this);
     }
 
     removeRecord(id) {
@@ -26,6 +24,10 @@ class StaffComponent extends Component {
         this.setState({
             isEdit: !this.state.isEdit
         });
+    }
+
+    updateDetails(){
+        
     }
 
     componentWillMount() {
@@ -85,7 +87,11 @@ class StaffComponent extends Component {
                         </span>
                         <span className="staff-qualification">
                             <Row>
-                                <Col xs="3" sm="3"><button onClick={this.enableEdit}>{ this.state.isEdit ? 'Update' : 'Edit'}</button></Col>
+                                <Col xs="3" sm="3">
+                                    {this.state.isEdit ?
+                                        <button onClick={this.updateDetails}>Update</button> :
+                                        <button onClick={this.enableEdit}>Edit</button>}
+                                </Col>
                                 <Col xs="9" sm="9"><button onClick={this.removeRecord}>Remove Record</button></Col>
                             </Row>
                         </span>
@@ -96,14 +102,13 @@ class StaffComponent extends Component {
 
         return (
             <div>
-                <Breadcrumb>
-                    <Breadcrumb.Item href="">
-                        <Link to="/dashboard"><Icon type="home" /></Link>
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item href="">
-                        <span>Staffs</span>
-                    </Breadcrumb.Item>
-                </Breadcrumb>
+                <div className="bread-nav">
+                    <Breadcrumb>
+                        <BreadcrumbItem><a href="#">Home</a></BreadcrumbItem>
+                        <BreadcrumbItem><a href="#">Staffs</a></BreadcrumbItem>
+                        <BreadcrumbItem active>Data</BreadcrumbItem>
+                    </Breadcrumb>
+                </div>
                 <div>
                     <div>
 
