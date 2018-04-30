@@ -81,7 +81,9 @@ $side-bar-li-hover: #f8f9fa;
             color: $side-bar-text;
             margin: 10px 0;
             padding: 10px 30px;
+            font-size: 14px;
             &:hover{
+                border-left: 5px solid #0073aa;
                 background-color: $side-bar-li-hover;
                 cursor: pointer;
             }
@@ -94,11 +96,19 @@ $dashboard-bg-color: #fff;
     width: 80%;
     margin: 0 2.5%;
     height: 98%;
+    padding: 1%;
     float: left;
     background-color: $dashboard-bg-color;
 
     .detail-list{
         font-size: 14px;
+    }
+    .staff-nav-bar{
+        margin: 8px 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
     }
     .bread-nav{
         font-size: 12px;

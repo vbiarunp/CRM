@@ -19,7 +19,8 @@ class StaffListComponent extends Component {
                 name: '',
                 qualification: '',
                 email: ''
-            }
+            },
+            displayType: 'grid'
         };
         this.showForm = this.showForm.bind(this);
         this.addTeacher = this.addTeacher.bind(this);
@@ -71,7 +72,7 @@ class StaffListComponent extends Component {
     render() {
         let staffDOM = '';
         const { teacherDetails } = this.state;
-        
+
         if (this.props.staff.listOfStaff) {
             staffDOM = this.props.staff.listOfStaff.map((element) => {
                 return <Col span={6} key={element._id}>
@@ -91,9 +92,10 @@ class StaffListComponent extends Component {
 
         return (
             <div>
-                <div style={{ margin: '8px 0', width: '100%' }}>
+                <div className="staff-nav-bar">
                     <button onClick={this.showForm}>Add Staff</button>
                     <Search placeholder="input search text" onChange={this.onSearch} style={{ width: 500 }} />
+                    <span><Icon type={this.state.displayType === "grid" ? "appstore-o" : "table"} /></span>
                 </div>
                 <Modal title="Add Teacher" visible={this.state.visible} onOk={this.handleOk} onCancel={this.showForm}
                     footer={[]}>

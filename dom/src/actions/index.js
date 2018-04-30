@@ -84,3 +84,9 @@ export const logoutUser = () => {
         dispatch({ type: 'LOGOUT_USER' });
     }
 }
+
+export const updateStaff = (data) => {
+    return (dispatch) => {
+        console.log(data)
+    }
+}

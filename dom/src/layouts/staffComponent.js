@@ -20,14 +20,17 @@ class StaffComponent extends Component {
         this.props.history.push('/dashboard');
     }
 
-    enableEdit() {
+    enableEdit(event) {
+        debugger
+        event.stopPropagation();
         this.setState({
             isEdit: !this.state.isEdit
         });
     }
 
-    updateDetails(){
-        
+    updateDetails(event) {
+        debugger
+        this.props.updateStaff();
     }
 
     componentWillMount() {
@@ -40,63 +43,65 @@ class StaffComponent extends Component {
         if (this.props.staff.selectedTeacher) {
             const { selectedTeacher } = this.props.staff;
             templateRender = <Container>
-                <Row>
-                    <Col xs="3" sm="3">
-                        <img style={{ width: '100%' }} src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                    </Col>
-                    <Col className="detail-list">
-                        <span className="staff-name">
-                            <Row>
-                                <Col xs="3" sm="3">Name: </Col>
-                                <Col xs="9" sm="9">
-                                    {this.state.isEdit ? <input type="text" value={selectedTeacher.name} /> : (<text>{selectedTeacher.name}</text>)}
-                                </Col>
-                            </Row>
-                        </span>
-                        <span className="staff-qualification">
-                            <Row>
-                                <Col xs="3" sm="3">Qualification: </Col>
-                                <Col xs="9" sm="9">
-                                    {this.state.isEdit ? <input type="text" value={selectedTeacher.name} /> : (<text>{selectedTeacher.qualification}</text>)}
-                                </Col>
-                            </Row>
-                        </span>
-                        <span className="staff-qualification">
-                            <Row>
-                                <Col xs="3" sm="3">Joining Date: </Col>
-                                <Col xs="9" sm="9">
-                                    {this.state.isEdit ? <input type="text" value={selectedTeacher.name} /> : (<text>{selectedTeacher.qualification}</text>)}
-                                </Col>
-                            </Row>
-                        </span>
-                        <span className="staff-qualification">
-                            <Row>
-                                <Col xs="3" sm="3">Total Experience: </Col>
-                                <Col xs="9" sm="9">
-                                    {this.state.isEdit ? <input type="text" value={selectedTeacher.qualification} /> : (<text>{selectedTeacher.qualification}</text>)}
-                                </Col>
-                            </Row>
-                        </span>
-                        <span className="staff-qualification">
-                            <Row>
-                                <Col xs="3" sm="3">Address: </Col>
-                                <Col xs="9" sm="9">
-                                    {this.state.isEdit ? <input type="text" value={selectedTeacher.qualification} /> : (<text>{selectedTeacher.qualification}</text>)}
-                                </Col>
-                            </Row>
-                        </span>
-                        <span className="staff-qualification">
-                            <Row>
-                                <Col xs="3" sm="3">
-                                    {this.state.isEdit ?
-                                        <button onClick={this.updateDetails}>Update</button> :
-                                        <button onClick={this.enableEdit}>Edit</button>}
-                                </Col>
-                                <Col xs="9" sm="9"><button onClick={this.removeRecord}>Remove Record</button></Col>
-                            </Row>
-                        </span>
-                    </Col>
-                </Row>
+                <form onSubmit={() => this.updateDetails}>
+                    <Row>
+                        <Col xs="3" sm="3">
+                            <img style={{ width: '100%' }} src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                        </Col>
+                        <Col className="detail-list">
+                            <span className="staff-name">
+                                <Row>
+                                    <Col xs="3" sm="3">Name: </Col>
+                                    <Col xs="9" sm="9">
+                                        {this.state.isEdit ? <input type="text" value={selectedTeacher.name} /> : (<text>{selectedTeacher.name}</text>)}
+                                    </Col>
+                                </Row>
+                            </span>
+                            <span className="staff-qualification">
+                                <Row>
+                                    <Col xs="3" sm="3">Qualification: </Col>
+                                    <Col xs="9" sm="9">
+                                        {this.state.isEdit ? <input type="text" value={selectedTeacher.name} /> : (<text>{selectedTeacher.qualification}</text>)}
+                                    </Col>
+                                </Row>
+                            </span>
+                            <span className="staff-qualification">
+                                <Row>
+                                    <Col xs="3" sm="3">Joining Date: </Col>
+                                    <Col xs="9" sm="9">
+                                        {this.state.isEdit ? <input type="text" value={selectedTeacher.name} /> : (<text>{selectedTeacher.qualification}</text>)}
+                                    </Col>
+                                </Row>
+                            </span>
+                            <span className="staff-qualification">
+                                <Row>
+                                    <Col xs="3" sm="3">Total Experience: </Col>
+                                    <Col xs="9" sm="9">
+                                        {this.state.isEdit ? <input type="text" value={selectedTeacher.qualification} /> : (<text>{selectedTeacher.qualification}</text>)}
+                                    </Col>
+                                </Row>
+                            </span>
+                            <span className="staff-qualification">
+                                <Row>
+                                    <Col xs="3" sm="3">Address: </Col>
+                                    <Col xs="9" sm="9">
+                                        {this.state.isEdit ? <input type="text" value={selectedTeacher.qualification} /> : (<text>{selectedTeacher.qualification}</text>)}
+                                    </Col>
+                                </Row>
+                            </span>
+                            <span className="staff-qualification">
+                                <Row>
+                                    <Col xs="3" sm="3">
+                                        {this.state.isEdit ?
+                                            <button type="submit">Update</button> :
+                                            <button onClick={this.enableEdit}>Edit</button>}
+                                    </Col>
+                                    <Col xs="9" sm="9"><button onClick={this.removeRecord}>Remove Record</button></Col>
+                                </Row>
+                            </span>
+                        </Col>
+                    </Row>
+                </form>
             </Container >
         }
 
