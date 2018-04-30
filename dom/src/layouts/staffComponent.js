@@ -110,7 +110,7 @@ class StaffComponent extends Component {
                 <div className="bread-nav">
                     <Breadcrumb>
                         <BreadcrumbItem><a href="#">Home</a></BreadcrumbItem>
-                        <BreadcrumbItem><a href="#">Staffs</a></BreadcrumbItem>
+                        <BreadcrumbItem><Link to="/dashboard">Staffs</Link></BreadcrumbItem>
                         <BreadcrumbItem active>Data</BreadcrumbItem>
                     </Breadcrumb>
                 </div>

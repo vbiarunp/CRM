@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as actions from '../../actions';
 import { Input, Select, Icon, Avatar, Popconfirm, message, Modal, notification, Card, Col, Row, Form } from 'antd';
+import ListComponent from '../Staffs/listComponent';
 const { Meta } = Card;
 const Search = Input.Search;
 const { Item } = Form;
@@ -70,25 +71,7 @@ class StaffListComponent extends Component {
     }
 
     render() {
-        let staffDOM = '';
         const { teacherDetails } = this.state;
-
-        if (this.props.staff.listOfStaff) {
-            staffDOM = this.props.staff.listOfStaff.map((element) => {
-                return <Col span={6} key={element._id}>
-                    <Card
-                        style={{ width: '100%' }}
-                        actions={[<Icon type="setting" />, <Link to={{ pathname: "/staff/" + element._id, state: { foo: 'bar' } }}><Icon type="edit" /></Link>, <Icon type="ellipsis" />]}
-                    >
-                        <Meta
-                            avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                            title={element.name}
-                            description={element.qualification}
-                        />
-                    </Card>
-                </Col>
-            });
-        }
 
         return (
             <div>
@@ -110,12 +93,8 @@ class StaffListComponent extends Component {
                     </Item>
                     <button onClick={this.addTeacher}>Add Staff</button>
                 </Modal>
-
-                <Row gutter={8}>
-
-                    {staffDOM}
-
-                </Row>
+                
+                {this.props.staff.listOfStaff ? <ListComponent listJSON={this.props.staff.listOfStaff} /> : ''}
             </div>
         )
     }
